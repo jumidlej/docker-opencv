@@ -15,14 +15,14 @@ RUN apt-get autoremove
 # pre-requisitos
 RUN apt-get update 
 RUN apt-get upgrade
-RUN apt-get install build-essential cmake pkg-config -y
-RUN apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng-dev -y
-RUN apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev -y
-RUN apt-get install libxvidcore-dev libx264-dev -y
-RUN apt-get install libfontconfig1-dev libcairo2-dev -y
-RUN apt-get install libgdk-pixbuf2.0-dev libpango1.0-dev -y
-RUN apt-get install libgtk2.0-dev libgtk-3-dev -y
-RUN apt-get install libatlas-base-dev gfortran -y
+RUN apt-get install -y build-essential cmake pkg-config
+RUN apt-get install -y libjpeg-dev libtiff5-dev libjasper-dev libpng-dev
+RUN apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+RUN apt-get install -y libxvidcore-dev libx264-dev
+RUN apt-get install -y libfontconfig1-dev libcairo2-dev
+RUN apt-get install -y libgdk-pixbuf2.0-dev libpango1.0-dev
+RUN apt-get install -y libgtk2.0-dev libgtk-3-dev
+RUN apt-get install -y libatlas-base-dev gfortran
 
 # instalar pip
 RUN wget https://bootstrap.pypa.io/get-pip.py
