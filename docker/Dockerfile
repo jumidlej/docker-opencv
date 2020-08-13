@@ -14,7 +14,7 @@ RUN apt-get autoremove
 
 # pre-requisitos
 RUN apt-get update 
-RUN apt-get upgrade
+RUN apt-get upgrade -y
 RUN apt-get install -y build-essential cmake pkg-config
 RUN apt-get install -y libjpeg-dev libtiff5-dev libjasper-dev libpng-dev
 RUN apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
