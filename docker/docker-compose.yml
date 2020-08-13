@@ -1,0 +1,7 @@
+version: '3'
+services:
+  docker-opencv:
+    build: .
+    image: docker-opencv:v1
+    container_name: docker-opencv
+    command: python3 app.py
