@@ -52,6 +52,7 @@ RUN rm -rf ~/.cache/pip
 # DEU ERRO BORA TENTAR ISSO DEPOIS
 # RUN pip install "picamera[array]"
 # não tá conseguindo instalar coisas com o Pip
+# Erro na instalação do numpy: Tinha que instalar o python3-dev antes
 RUN apt-get install -y python3-dev
 RUN pip install numpy
 
@@ -65,9 +66,9 @@ ADD https://github.com/opencv/opencv_contrib/archive/4.1.1.zip /opencv_contrib
 # RUN mv opencv-4.1.1 opencv
 # RUN mv opencv_contrib-4.1.1 opencv_contrib
 
-WORKDIR /opencv
+RUN cd opencv
 RUN mkdir build
-WORKDIR /opencv/build
+RUN cd build
 RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
