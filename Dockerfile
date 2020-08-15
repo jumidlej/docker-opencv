@@ -2,6 +2,7 @@
 FROM raspbian/desktop
 # será que já tem python? se não tem que instalar
 
+WORKDIR /
 USER root
 
 # liberar espaço
@@ -37,9 +38,11 @@ RUN apt-get install -y build-essential \
     gfortran
 
 # instalar pip
-RUN wget https://bootstrap.pypa.io/get-pip.py
+# não consegui fazer com o wget, tive que pegar o arquivo
+ADD wget https://bootstrap.pypa.io/get-pip.py /get-pip.py
+# não tem o get-pip.py
 # será que precisa desse comando? só instalei o python3
-COPY get-pip.py /get-pip.py
+# COPY get-pip.py /get-pip.py
 RUN python get-pip.py
 RUN python3 get-pip.py
 RUN rm -rf ~/.cache/pip
@@ -49,8 +52,8 @@ RUN pip install "picamera[array]"
 
 # instalar opencv
 RUN cd ~
-RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.1.zip
-RUN wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.1.1.zip
+ADD wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.1.zip /opencv.zip
+ADD wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.1.1.zip /opencv_contrib.zip
 RUN unzip opencv.zip
 RUN unzip opencv_contrib.zip
 RUN mv opencv-4.1.1 opencv
