@@ -1,6 +1,7 @@
 # raspbian
 FROM raspbian/desktop
 # será que já tem python? se não tem que instalar
+# disse que a versão desktop já tem...
 
 WORKDIR /
 USER root
@@ -48,7 +49,8 @@ RUN python3 get-pip.py
 RUN rm -rf ~/.cache/pip
 
 # instalar picamera
-RUN pip install "picamera[array]"
+# DEU ERRO BORA TENTAR ISSO DEPOIS
+# RUN pip install "picamera[array]"
 
 # instalar opencv
 # RUN cd ~
