@@ -52,7 +52,7 @@ RUN rm -rf ~/.cache/pip
 # DEU ERRO BORA TENTAR ISSO DEPOIS
 # RUN pip install "picamera[array]"
 # não tá conseguindo instalar coisas com o Pip
-RUN apt-get install python3-dev
+RUN apt-get install -y python3-dev
 RUN pip install numpy
 
 # instalar opencv
