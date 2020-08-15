@@ -44,13 +44,15 @@ ADD https://bootstrap.pypa.io/get-pip.py /get-pip.py
 # não tem o get-pip.py
 # será que precisa desse comando? só instalei o python3
 # COPY get-pip.py /get-pip.py
-RUN python get-pip.py
+# RUN python get-pip.py
 RUN python3 get-pip.py
 RUN rm -rf ~/.cache/pip
 
 # instalar picamera
 # DEU ERRO BORA TENTAR ISSO DEPOIS
 # RUN pip install "picamera[array]"
+# não tá conseguindo instalar coisas com o Pip
+RUN pip install numpy
 
 # instalar opencv
 # RUN cd ~
@@ -61,8 +63,6 @@ ADD https://github.com/opencv/opencv_contrib/archive/4.1.1.zip /opencv_contrib
 # RUN unzip opencv_contrib.zip
 # RUN mv opencv-4.1.1 opencv
 # RUN mv opencv_contrib-4.1.1 opencv_contrib
-
-RUN pip install numpy
 
 WORKDIR /opencv
 RUN mkdir build
