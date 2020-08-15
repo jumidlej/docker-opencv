@@ -39,7 +39,7 @@ RUN apt-get install -y build-essential \
 
 # instalar pip
 # não consegui fazer com o wget, tive que pegar o arquivo
-ADD wget https://bootstrap.pypa.io/get-pip.py /get-pip.py
+ADD https://bootstrap.pypa.io/get-pip.py /get-pip.py
 # não tem o get-pip.py
 # será que precisa desse comando? só instalei o python3
 # COPY get-pip.py /get-pip.py
@@ -51,19 +51,20 @@ RUN rm -rf ~/.cache/pip
 RUN pip install "picamera[array]"
 
 # instalar opencv
-RUN cd ~
-ADD wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.1.zip /opencv.zip
-ADD wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.1.1.zip /opencv_contrib.zip
-RUN unzip opencv.zip
-RUN unzip opencv_contrib.zip
-RUN mv opencv-4.1.1 opencv
-RUN mv opencv_contrib-4.1.1 opencv_contrib
+# RUN cd ~
+ADD https://github.com/opencv/opencv/archive/4.1.1.zip /opencv
+ADD https://github.com/opencv/opencv_contrib/archive/4.1.1.zip /opencv_contrib
+# ADD já descomprime e eu acho que a gente já pode colocar na pasta com o nome certo
+# RUN unzip opencv.zip
+# RUN unzip opencv_contrib.zip
+# RUN mv opencv-4.1.1 opencv
+# RUN mv opencv_contrib-4.1.1 opencv_contrib
 
 RUN pip install numpy
 
-RUN cd ~/opencv
+WORKDIR /opencv
 RUN mkdir build
-RUN cd build
+WORKDIR /opencv/build
 RUN cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
