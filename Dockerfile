@@ -12,7 +12,7 @@ RUN apt-get autoremove
 
 # instalar python3
 RUN apt-get update
-RUN apt install python3 idle3
+RUN apt install -y python3 idle3
 
 # pre-requisitos
 RUN apt-get update 
@@ -52,9 +52,11 @@ RUN rm -rf ~/.cache/pip
 # não tá conseguindo instalar coisas com o Pip
 # Erro na instalação do numpy: Tinha que instalar o python3-dev antes
 RUN apt-get install -y python3-dev
-RUN pip install "picamera[array]"
+RUN pip --version
+RUN pip3 --version
+RUN pip3 install "picamera[array]"
 # picamera já instala o numpy tbm, mas sla, vou deixar aqui
-RUN pip install numpy
+RUN pip3 install numpy
 
 # instalar opencv
 # RUN cd ~
@@ -87,6 +89,8 @@ RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.1.zip \
     -D OPENCV_ENABLE_NONFREE=ON \
     -D CMAKE_SHARED_LINKER_FLAGS=-latomic \
     -D BUILD_EXAMPLES=OFF .. \
+    -D PYTHON_INCLUDE_DIR=C:\Python27\include \
+    -D PYTHON_LIBRARY=C:\Python27\libs \
 && make -j4 \
 && make install \
 && ldconfig
