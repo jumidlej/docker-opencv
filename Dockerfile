@@ -11,8 +11,8 @@ RUN apt-get clean
 RUN apt-get autoremove
 
 # instalar python3
-# RUN apt-get update
-# RUN apt install python3 idle3
+RUN apt-get update
+RUN apt install python3 idle3
 
 # pre-requisitos
 RUN apt-get update 
