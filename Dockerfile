@@ -75,7 +75,8 @@ RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.1.zip \
 && mv opencv_contrib-4.1.1 opencv_contrib \
 && cd /opencv \
 && mkdir build \
-&& cd /build \
+&& cd build \
+&& pwd \
 && cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
