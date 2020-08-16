@@ -20,5 +20,6 @@ Call Stack (most recent call first):
  cmake/OpenCVModule.cmake:371 (_glob_locations)
  modules/CMakeLists.txt:7 (ocv_glob_modules)
 
+Acho que o Python2 tá me atrapalhando e isso não acontecia no tutorial porque a gente tinha o ambiente virtual.
 Verificar: Se estamos usando o python certo
 Fazer Dockerfile com e sem ambiente virtual
