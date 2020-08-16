@@ -66,6 +66,7 @@ RUN pip install numpy
 # RUN mv opencv-4.1.1 opencv
 # RUN mv opencv_contrib-4.1.1 opencv_contrib
 
+RUN apt-get install -y unzip
 RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.1.zip \
 && wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/4.1.1.zip \
 && unzip opencv.zip \
