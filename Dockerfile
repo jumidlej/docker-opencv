@@ -75,7 +75,7 @@ RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.1.zip \
 && mv opencv_contrib-4.1.1 opencv_contrib \
 && cd /opencv \
 && mkdir build \
-&& cd build \
+&& cd /build \
 && cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
@@ -90,20 +90,9 @@ RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.1.zip \
 && make install \
 && ldconfig
 
-# RUN cd opencv
-# RUN mkdir /opencv/build
-# RUN cd build
-# RUN /opencv/build/cmake -D CMAKE_BUILD_TYPE=RELEASE \
-#    -D CMAKE_INSTALL_PREFIX=/usr/local \
-#    -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
-#    -D ENABLE_NEON=ON \
-#    -D ENABLE_VFPV3=ON \
-#    -D BUILD_TESTS=OFF \
-#    -D INSTALL_PYTHON_EXAMPLES=OFF \
-#    -D OPENCV_ENABLE_NONFREE=ON \
-#    -D CMAKE_SHARED_LINKER_FLAGS=-latomic \
-#    -D BUILD_EXAMPLES=OFF ..
-
-# RUN /opencv/build/make -j4
-# RUN /opencv/build/make install
-# RUN /opencv/build/ldconfig
+#ImportError: No module named numpy.distutils
+#CMake Error at cmake/OpenCVModule.cmake:289 (message):
+#  No modules has been found: /root/opencv_contrib/modules
+#Call Stack (most recent call first):
+#  cmake/OpenCVModule.cmake:371 (_glob_locations)
+#  modules/CMakeLists.txt:7 (ocv_glob_modules)
