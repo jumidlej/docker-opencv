@@ -73,7 +73,7 @@ RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.1.zip \
 && unzip opencv_contrib.zip \
 && mv opencv-4.1.1 opencv \
 && mv opencv_contrib-4.1.1 opencv_contrib \
-&& cd ~/opencv \
+&& cd /opencv \
 && mkdir build \
 && cd build \
 && cmake -D CMAKE_BUILD_TYPE=RELEASE \
