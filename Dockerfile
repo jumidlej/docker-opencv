@@ -44,7 +44,7 @@ ADD https://bootstrap.pypa.io/get-pip.py /get-pip.py
 # não tem o get-pip.py
 # será que precisa desse comando? só instalei o python3
 # COPY get-pip.py /get-pip.py
-# RUN python get-pip.py
+RUN python get-pip.py
 RUN python3 get-pip.py
 RUN rm -rf ~/.cache/pip
 
