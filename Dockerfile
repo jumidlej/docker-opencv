@@ -2,6 +2,7 @@
 FROM raspbian/stretch
 # será que já tem python? se não tem que instalar
 # disse que a versão desktop já tem...
+# stretch é versão lite
 
 USER root
 WORKDIR /
@@ -14,7 +15,8 @@ RUN apt-get update && apt-get upgrade -y
 
 RUN apt-get install -y python3 \
     build-essential \
-    cmake pkg-config \
+    cmake \ 
+    pkg-config \
     libjpeg-dev \
     libtiff5-dev \
     libjasper-dev \
@@ -34,24 +36,21 @@ RUN apt-get install -y python3 \
     libatlas-base-dev \
     gfortran
 
+RUN apt-get install -y libhdf5-dev libhdf5-serial-dev libhdf5-103
+RUN apt-get install -y libqtgui4 libqtwebkit4 libqt4-test python3-pyqt5
+RUN apt-get install -y python3-dev
+
 # instalar pip
-# não consegui fazer com o wget, tive que pegar o arquivo
 ADD https://bootstrap.pypa.io/get-pip.py /get-pip.py
-# não tem o get-pip.py
 # será que precisa desse comando? só instalei o python3
-# COPY get-pip.py /get-pip.py
 # RUN python get-pip.py
 RUN python3 get-pip.py
 RUN rm -rf ~/.cache/pip
 
 # instalar picamera
-# não tá conseguindo instalar coisas com o Pip
-# Erro na instalação do numpy: Tinha que instalar o python3-dev antes
-RUN apt-get install -y python3-dev
 RUN pip --version
 # RUN pip3 --version
 RUN pip install "picamera[array]"
-# picamera já instala o numpy tbm, mas sla, vou deixar aqui
 RUN pip install numpy
 
 RUN apt-get install -y unzip
