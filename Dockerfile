@@ -36,8 +36,8 @@ RUN apt-get install -y python3 \
     libatlas-base-dev \
     gfortran
 
-RUN apt-get install -y libhdf5-dev libhdf5-serial-dev libhdf5-103
-RUN apt-get install -y libqtgui4 libqtwebkit4 libqt4-test python3-pyqt5
+# RUN apt-get install -y libhdf5-dev libhdf5-serial-dev libhdf5-103
+# RUN apt-get install -y libqtgui4 libqtwebkit4 libqt4-test python3-pyqt5
 RUN apt-get install -y python3-dev
 
 # instalar pip
@@ -65,14 +65,15 @@ RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.1.zip \
 && cd build \
 && cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
+    -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
     -D ENABLE_NEON=ON \
     -D ENABLE_VFPV3=ON \
     -D BUILD_TESTS=OFF \
     -D INSTALL_PYTHON_EXAMPLES=OFF \
     -D OPENCV_ENABLE_NONFREE=ON \
     -D CMAKE_SHARED_LINKER_FLAGS=-latomic \
-    -D BUILD_EXAMPLES=OFF .. \
+    -D BUILD_EXAMPLES=OFF \ 
+    .. \
 && make -j4 \
 && make install \
 && ldconfig
