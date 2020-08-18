@@ -4,8 +4,8 @@ USER root
 WORKDIR /
 COPY app.py /app.py
 
-RUN apt-get clean && apt-get autoremove
-RUN apt-get update && apt-get upgrade -y
+# RUN apt-get clean && apt-get autoremove
+RUN apt-get update
 
 RUN apt-get install -y python3 \
     python3-dev \
