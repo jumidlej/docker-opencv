@@ -1,19 +1,14 @@
-# raspbian
 FROM raspbian/stretch
-# será que já tem python? se não tem que instalar
-# disse que a versão desktop já tem...
-# stretch é versão lite
 
 USER root
 WORKDIR /
+COPY app.py /app.py
 
-# liberar espaço
 RUN apt-get clean && apt-get autoremove
-
-# pre-requisitos
 RUN apt-get update && apt-get upgrade -y
 
 RUN apt-get install -y python3 \
+    python3-dev \
     build-essential \
     cmake \ 
     pkg-config \
@@ -38,19 +33,13 @@ RUN apt-get install -y python3 \
 
 # RUN apt-get install -y libhdf5-dev libhdf5-serial-dev libhdf5-103
 # RUN apt-get install -y libqtgui4 libqtwebkit4 libqt4-test python3-pyqt5
-RUN apt-get install -y python3-dev
 
 # instalar pip
 ADD https://bootstrap.pypa.io/get-pip.py /get-pip.py
-# será que precisa desse comando? só instalei o python3
-# RUN python get-pip.py
+RUN python get-pip.py
 RUN python3 get-pip.py
 RUN rm -rf ~/.cache/pip
 
-# instalar picamera
-RUN pip --version
-# RUN pip3 --version
-RUN pip install "picamera[array]"
 RUN pip install numpy
 
 RUN apt-get install -y unzip
